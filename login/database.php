@@ -1,13 +1,7 @@
 <?php
-    $dsn = 'mysql:host=localhost;dbname=my_guitar_shop1';
-    $username = 'mgs_user';
-    $password = 'pa55word';
-
-    try {
-        $db = new PDO($dsn, $username, $password);
-    } catch (PDOException $e) {
-        $error_message = $e->getMessage();
-        include('database_error.php');
-        exit();
-    }
+   define('DB_SERVER', 'localhost');
+   define('DB_USERNAME', 'root');
+   define('DB_PASSWORD', 'abc123');
+   define('DB_DATABASE', 'truxxit');
+   $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 ?>
