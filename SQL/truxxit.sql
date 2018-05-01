@@ -241,10 +241,12 @@ CREATE TABLE `user` (
   `dob` date DEFAULT NULL,
   `sex` varchar(6) DEFAULT NULL,
   `acc_created_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`sys_id`)
+  PRIMARY KEY (`sys_id`),
+  CONSTRAINT constraint_unique_email_id UNIQUE (`email_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+create unique index idx_unique_login_id ON `user`(login_id);
 --
 -- Dumping data for table `user`
 --
