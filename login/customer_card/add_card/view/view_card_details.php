@@ -39,8 +39,8 @@ $sql = "select * from card_details where cust_id = (select cust_id from customer
         <legend>What do you want to do?</legend>
 
         <label>&nbsp;</label>
-        <input type="submit" href = "add_card" name="action" value="Add Card">
-        <input type="submit" name="action" value="Cancel" ><br>
+        <input type="submit" href = "add_card" name="action" value="Edit My Profile">
+        <input type="button" name="action" value="Cancel" ><br>
     </fieldset>
     </form>
 </main>

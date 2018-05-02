@@ -1,6 +1,7 @@
 <?php
 require_once('model/fields.php');
 require_once('model/validate.php');
+include '../session.php';
 
 $validate = new Validate();
 $fields = $validate->getFields();
@@ -25,9 +26,9 @@ if ($action === NULL) {
 } else if ($action == "Cancel") {
 	header("location: ../welcome.php");
 } else { // update profile 
-	if ('user_type' == 'customer') {
+	if ($_SESSION['user_type'] == 'customer') {
 		header("location: edit_profile_customer");
-	} else if ('user_type' == 'driver' ) {
+	} else if ($_SESSION['user_type'] == 'driver' ) {
 		header("location: edit_driver_profile");
 	} else {
 		echo ("not sure :("); 

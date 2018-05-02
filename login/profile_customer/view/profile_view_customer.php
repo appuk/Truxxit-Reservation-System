@@ -1,6 +1,5 @@
 <?php 
 include 'header.php'; 
-include('../session.php');
 
 	$sql = "SELECT * FROM user inner join customer on user.sys_id=customer.cust_id where user.login_id='$login_session'";
     $result = mysqli_query($db,$sql); // see if user is a customer...
