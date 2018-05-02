@@ -47,8 +47,9 @@ switch ($action) {
         $cardNumber = '';
         $cardDigits = '';
         $expDate = '';
-        
+        echo "hello1";
         include 'view/register.php';
+		echo "hello2";
         break;
     case 'register':
         // Copy form values to local variables
