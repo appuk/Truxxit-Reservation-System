@@ -44,5 +44,4 @@ $sql = "select * from card_details where cust_id = (select cust_id from customer
     </fieldset>
     </form>
 </main>
-<?php echo "hello!"; ?>
 <?php include 'footer.php'; ?>        

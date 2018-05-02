@@ -15,7 +15,7 @@ if ($action === NULL) {
 include 'view/view_card_details.php';}
 else if($action =='Add Card')
 	{
-	header("location: /add_card/");	
+	header("location:/add_card/index.php");	
 	}
 else{
 	header("location: ../welcome.php");	
