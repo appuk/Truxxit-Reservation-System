@@ -22,6 +22,8 @@ $fields->addField('card_number', 'Enter number with or without dashes.');
 $fields->addField('exp_date', 'Use mm/yyyy format.');
 
 $action = filter_input(INPUT_POST, 'action');
+echo $action;
+
 if ($action === NULL) {
     $action = 'reset';
 } else {
@@ -89,6 +91,8 @@ switch ($action) {
         $validate->expDate('exp_date', $expDate);
 
         // Load appropriate view based on hasErrors
+		echo $fields->hasErrors();
+		echo "-------";
         if ($fields->hasErrors()) {
             include 'view/register.php';
         } else {

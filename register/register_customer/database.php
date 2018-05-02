@@ -1,7 +1,7 @@
 <?php
     $dsn = 'mysql:host=localhost;dbname=truxxit';
     $username = 'root';
-    $passworddb = '1003';
+    $passworddb = 'root';
 
     try {
         $db = new PDO($dsn, $username, $passworddb);

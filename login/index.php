@@ -35,7 +35,6 @@
                </form>
 			   <?php
    include("database.php");
-   session_start();
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
@@ -53,10 +52,12 @@
       // If result matched $myusername and $mypassword, table row must be 1 row
 	  $error = "";
       if($count == 1) {
-         //session_register("myusername");
+         session_start();
+		 //session_register("myusername");
          $_SESSION['login_user'] = $myusername;
          
          header("location: welcome.php");
+		 die();
       }else {
          $error = "Your Login Name or Password is invalid";
 		 echo "<div style = \"font-size:11px; color:#cc0000; margin-top:10px\">";
@@ -68,7 +69,8 @@
             </div>
 				
          </div>
-			
+		 <br>
+		<h3><a href = "../register">Register New User</a></h3>
       </div>
 
    </body>
