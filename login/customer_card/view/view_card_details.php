@@ -1,7 +1,7 @@
 <?php 
 include 'header.php'; 
 include('../session.php');
-echo $login_session;
+//echo $login_session;
 $sql = "select * from card_details where cust_id = (select cust_id from customer where cust_id =
 (select sys_id from user where login_id = '$login_session'))";
     $result = mysqli_query($db,$sql); 
@@ -44,5 +44,4 @@ $sql = "select * from card_details where cust_id = (select cust_id from customer
     </fieldset>
     </form>
 </main>
-<?php echo "hello!"; ?>
 <?php include 'footer.php'; ?>        

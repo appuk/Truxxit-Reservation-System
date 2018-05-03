@@ -58,6 +58,16 @@ class Validate {
             $field->clearErrorMessage();
         }
     }
+	
+	public function membership($name, $value, $required = false) {
+        $field = $this->fields->getField($name);
+
+        // If field is not required and empty, remove errors and exit
+        if (empty($value)) {
+            $field->setErrorMessage('Select an option.');
+        }
+
+    }
 
     public function sex($name, $value, $required = false) {
         $field = $this->fields->getField($name);
@@ -211,134 +221,6 @@ class Validate {
         $pattern = '/^[[:digit:]]{5}(-[[:digit:]]{4})?$/';
         $message = 'Invalid zip code.';
         $this->pattern($name, $value, $pattern, $message, $required);
-    }
-
-    public function cardType($name, $value) {
-        $field = $this->fields->getField($name);
-        if (empty($value)) {
-            $field->setErrorMessage('Please select a card type.');
-            return;
-        }
-        $types = array();
-        $types[] = 'm';
-        $types[] = 'v';
-        $types[] = 'a';
-        $types[] = 'd';
-        $types = implode('|', $types);
-        $pattern = '/^(' . $types . ')$/';
-        $this->pattern($name, $value, $pattern, 'Invalid card type.');
-    }
-
-    public function cardNumber($name, $value, $type) {
-        $field = $this->fields->getField($name);
-		$this->text($name, $value);
-        if ($field->hasError()) { return; }
-
-        switch ($type) {
-            case 'm':  // MasterCard
-                $prefixes = '51-55';
-                $lengths  = '16';
-                break;
-            case 'v':  // Visa
-                $prefixes = '4';
-                $lengths  = '13,16';
-                break;
-            case 'a':  // American Express
-                $prefixes = '34,37';
-                $lengths  = '15';
-                break;
-            case 'd':  // Discover
-                $prefixes = '6011,622126-622925,644-649,65';
-                $lengths  = '16';
-                break;
-            case '':   // No card type selected.
-                $field->clearErrorMessage();
-                return;
-            default:
-                $field->setErrorMessage('Invalid card type.');
-                return;
-        }
-        // Check lengths
-        $lengths = explode(',', $lengths);
-        $validLengths = false;
-        foreach($lengths as $length) {
-            $pattern = '/^[[:digit:]]{' . $length . '}$/';
-            if (preg_match($pattern, $value) === 1) {
-                $validLengths = true;
-                break;
-            }
-        }
-        if ( ! $validLengths ) {
-            $field->setErrorMessage('Invalid card number length.');
-            return;
-        }
-        // Check prefix
-        $prefixes = explode(',', $prefixes);
-        $rangePattern = '/^[[:digit:]]+-[[:digit:]]+$/';
-        $validPrefix = false;
-        foreach($prefixes as $prefix) {
-            if (preg_match($rangePattern, $prefix) === 1) {
-                $range = explode('-', $prefix);
-                $start = intval($range[0]);
-                $end = intval($range[1]);
-                for( $prefix = $start; $prefix <= $end; $prefix++ ) {
-                    $pattern = '/^' . $prefix . '/';
-                    if (preg_match($pattern, $value) === 1) {
-                        $validPrefix = true;
-                        break;
-                    }
-                }
-            } else {
-                $pattern = '/^' . $prefix . '/';
-                if (preg_match($pattern, $value) === 1) {
-                    $validPrefix = true;
-                    break;
-                }
-            }
-        }
-        if ( ! $validPrefix ) {
-            $field->setErrorMessage('Invalid card number prefix.');
-            return;
-        }
-        // Validate checksum
-        $sum = 0;
-        $length = strlen($value);
-        for ($i = 0; $i < $length; $i++) {
-            $digit = intval($value[$length - $i - 1]);
-            $digit = ( $i % 2 == 1 ) ? $digit * 2 : $digit;
-            $digit = ($digit > 9) ? $digit - 9 : $digit;
-            $sum += $digit;
-        }
-        if ( $sum % 10 != 0 ) {
-            $field->setErrorMessage('Invalid card number checksum.');
-            return;
-        }
-        $field->clearErrorMessage();
-    }
-
-    public function expDate($name, $value) {
-        $field = $this->fields->getField($name);
-        $datePattern = '/^(0[1-9]|1[012])\/[1-9][[:digit:]]{3}?$/';
-        $match = preg_match($datePattern, $value);
-        if ( $match === false ) {
-            $field->setErrorMessage('Error testing field.');
-            return;
-        }
-        if ( $match != 1 ) {
-            $field->setErrorMessage('Invalid date format.');
-            return;
-        }
-        $dateParts = explode('/', $value);
-        $month = $dateParts[0];
-        $year  = $dateParts[1];
-        $dateString = $month . '/01/' . $year . ' last day of 23:59:59';
-        $exp = new \DateTime($dateString);
-        $now = new \DateTime();
-        if ( $exp < $now ) {
-            $field->setErrorMessage('Card has expired.');
-            return;
-        }
-        $field->clearErrorMessage();
     }
 
 }
