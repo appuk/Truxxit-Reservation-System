@@ -22,12 +22,15 @@ $fields->addField('DOB');
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
     $action = 'display';
+	echo "displaying your profile, one second...";
 	include 'view/profile_view_customer.php';
 } else if ($action == "Cancel") {
 	header("location: ../welcome.php");
+	die();
 } else { // update profile 
 	if ($_SESSION['user_type'] == 'customer') {
-		header("location: edit/");
+		header("location: edit");
+		die();
 	} else {
 		echo ("not sure :("); 
 	}
