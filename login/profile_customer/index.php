@@ -27,9 +27,7 @@ if ($action === NULL) {
 	header("location: ../welcome.php");
 } else { // update profile 
 	if ($_SESSION['user_type'] == 'customer') {
-		header("location: edit_profile_customer");
-	} else if ($_SESSION['user_type'] == 'driver' ) {
-		header("location: edit_driver_profile");
+		header("location: edit/");
 	} else {
 		echo ("not sure :("); 
 	}

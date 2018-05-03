@@ -1,14 +1,19 @@
 <?php 
 include 'header.php'; 
+	echo $login_session;
 
 	$sql = "SELECT * FROM user inner join customer on user.sys_id=customer.cust_id where user.login_id='$login_session'";
     $result = mysqli_query($db,$sql); // see if user is a customer...
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
+	/**
 	if ($count == 0) {
 		// error, no user in session 
-		header("location:index.php");
+		echo "error in retrieving user from db...view profile page";
+		header("location: index.php");
+		die();
 	}
+	*/
 ?>
 <main>
     <form action="." method="post" >
