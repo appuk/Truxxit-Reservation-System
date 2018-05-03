@@ -1,9 +1,9 @@
 <?php 
 include 'header.php'; 
-
-echo $login_session;
-$sql = "SELECT * FROM card_details where cust_id = (SELECT cust_id FROM customer where cust_id =
-(SELECT sys_id FROM user where login_id = '$login_session'))";
+include('../session.php');
+//echo $login_session;
+$sql = "select * from card_details where cust_id = (select cust_id from customer where cust_id =
+(select sys_id from user where login_id = '$login_session'))";
     $result = mysqli_query($db,$sql); 
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
@@ -40,5 +40,4 @@ $sql = "SELECT * FROM card_details where cust_id = (SELECT cust_id FROM customer
     </fieldset>
     </form>
 </main>
-<?php echo "hello!"; ?>
 <?php include 'footer.php'; ?>        

@@ -54,6 +54,7 @@ body {
 <div class="topnav">
 <?php
 	  $sql = "SELECT * FROM user inner join customer on user.sys_id=customer.cust_id where user.login_id='$login_session'";
+	  
       $result = mysqli_query($db,$sql); // see if user is a customer...
       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
       
@@ -70,6 +71,7 @@ body {
 		 
       } 
 	  else {
+
 		 // user is a driver 
 		 $_SESSION['user_type'] = "driver";
 		 

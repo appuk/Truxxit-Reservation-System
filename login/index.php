@@ -58,7 +58,12 @@
          
          header("location: welcome.php");
 		 die();
-      }else {
+      } else if ($count > 1) {
+		 $error = "Your Login Name is not unique.";
+		 echo "<div style = \"font-size:11px; color:#cc0000; margin-top:10px\">";
+		 echo $error; 
+		 echo "</div>";
+	  } else {
          $error = "Your Login Name or Password is invalid";
 		 echo "<div style = \"font-size:11px; color:#cc0000; margin-top:10px\">";
 		 echo $error; 
