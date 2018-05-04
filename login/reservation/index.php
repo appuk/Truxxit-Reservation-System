@@ -14,7 +14,7 @@ if ($action === NULL) {
 	echo ".";
 	include 'view/success.php';
 } else if ($action == "Cancel") {
-	header("location: ../welcome.php");
+	header("location: ../../login/welcome.php");
 	die();
 } else { // update profile 
 	if ($_SESSION['user_type'] == 'customer') {

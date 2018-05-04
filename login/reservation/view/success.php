@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>TruxxIt!!!</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-<header>
-    <h1>My Reservations</h1>
-</header>
-<main>
-  
-
+<?php include 'header.php'; ?>
 	 <table border="1">
 	 <tr>
 		<th>Reservation_ID</th>
@@ -76,15 +63,10 @@ $reservation_id_ = 0;
     } 
   } while( $mysqli->next_result() ); 
 } 	
-
-
+	        
 ?>
 
-
-</main>
-
-    <p class="copyright">
-         </p>
-
-</body>
-</html>
+<br>
+<a href="../welcome.php"><-Back to My Dashboard</a>
+<br>
+<?php include 'footer.php'; ?>

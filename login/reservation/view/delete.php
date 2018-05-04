@@ -13,7 +13,16 @@ $statement1 = $mysqli->prepare($queryCategory);
 
 $statement1->execute();
 ?>
-<?php echo "Deleted Record successfully!!!"; ?>
+
+<?php echo "<h2>Deleted Reservation Successfully!</h2>"; ?>
+<br>
+<br>
+<a href="../../reservation">Back to My Reservations</a>
+<br>
+<br>
+<a href="../../welcome.php">Back to My Dashboard</a>
+<br>
+<hr>
 <?php include 'footer.php'; ?>  
 
 

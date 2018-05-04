@@ -7,5 +7,5 @@
 </head>
 <body>
 <header>
-    <h1>View My Account</h1>
+    <h1>My Reservations</h1>
 </header>
