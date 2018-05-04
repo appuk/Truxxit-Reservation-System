@@ -144,54 +144,8 @@ CREATE TABLE `plan_details` (
 
 LOCK TABLES `plan_details` WRITE;
 /*!40000 ALTER TABLE `plan_details` DISABLE KEYS */;
-INSERT INTO `plan_details` VALUES (1,'Plan1',25),(2,'Plan2',35);
+INSERT INTO `plan_details` VALUES (1,'Super Saver',25),(2,'Maximum Benefits',35);
 /*!40000 ALTER TABLE `plan_details` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `reservation`
---
-
-DROP TABLE IF EXISTS `reservation`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `reservation` (
-  `reservation_id` int(11) NOT NULL,
-  `truck_id` int(11) DEFAULT NULL,
-  `cust_id` int(11) DEFAULT NULL,
-  `driver_id` int(11) DEFAULT NULL,
-  `plan_id` int(11) DEFAULT NULL,
-  `toll_amount` int(11) DEFAULT NULL,
-  `parking_charge` int(11) DEFAULT NULL,
-  `load_size` int(11) DEFAULT NULL,
-  `travel_date` date DEFAULT NULL,
-  `travel_time` time DEFAULT NULL,
-  `estimated_trip_duration` int(11) DEFAULT NULL,
-  `actual_trip_duration` int(11) DEFAULT NULL,
-  `time_to_load_unload` int(11) DEFAULT NULL,
-  `estimated_cost` int(11) DEFAULT NULL,
-  `actual_total_cost` int(11) DEFAULT NULL,
-  `actual_distance` int(11) DEFAULT NULL,
-  `reservation_status` varchar(20) DEFAULT NULL,
-  `destination` varchar(20) DEFAULT NULL,
-  `source_name` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`reservation_id`),
-  KEY `truck_id` (`truck_id`,`driver_id`),
-  KEY `cust_id` (`cust_id`),
-  KEY `plan_id` (`plan_id`),
-  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`truck_id`, `driver_id`) REFERENCES `driver_truck` (`truck_id`, `driver_id`),
-  CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`cust_id`) REFERENCES `customer` (`cust_id`),
-  CONSTRAINT `reservation_ibfk_3` FOREIGN KEY (`plan_id`) REFERENCES `plan_details` (`plan_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `reservation`
---
-
-LOCK TABLES `reservation` WRITE;
-/*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
-/*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -271,3 +225,121 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-04-24 16:08:11
+
+
+--
+-- Table structure for table `reservation`
+--
+
+/* DROP TABLE IF EXISTS `reservation`; */
+/* !40101 SET @saved_cs_client     = @@character_set_client */;
+/* !40101 SET character_set_client = utf8 */;
+/*
+CREATE TABLE `reservation` (
+  `reservation_id` int(11) NOT NULL,
+  `truck_id` int(11) DEFAULT NULL,
+  `cust_id` int(11) DEFAULT NULL,
+  `driver_id` int(11) DEFAULT NULL,
+  `plan_id` int(11) DEFAULT NULL,
+  `toll_amount` int(11) DEFAULT NULL,
+  `parking_charge` int(11) DEFAULT NULL,
+  `load_size` int(11) DEFAULT NULL,
+  `travel_date` date DEFAULT NULL,
+  `travel_time` time DEFAULT NULL,
+  `estimated_trip_duration` int(11) DEFAULT NULL,
+  `actual_trip_duration` int(11) DEFAULT NULL,
+  `time_to_load_unload` int(11) DEFAULT NULL,
+  `estimated_cost` int(11) DEFAULT NULL,
+  `actual_total_cost` int(11) DEFAULT NULL,
+  `actual_distance` int(11) DEFAULT NULL,
+  `reservation_status` varchar(20) DEFAULT NULL,
+  `destination` varchar(20) DEFAULT NULL,
+  `source_name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`reservation_id`),
+  KEY `truck_id` (`truck_id`,`driver_id`),
+  KEY `cust_id` (`cust_id`),
+  KEY `plan_id` (`plan_id`),
+  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`truck_id`, `driver_id`) REFERENCES `driver_truck` (`truck_id`, `driver_id`),
+  CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`cust_id`) REFERENCES `customer` (`cust_id`),
+  CONSTRAINT `reservation_ibfk_3` FOREIGN KEY (`plan_id`) REFERENCES `plan_details` (`plan_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+/* ****************************** NEW RESERVATION table ************************************* */
+
+DROP TABLE IF EXISTS `reservation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+
+CREATE TABLE `reservation` (
+  `reservation_id` int(11) NOT NULL,
+  `truck_id` int(11) DEFAULT NULL,
+  `cust_id` int(11) DEFAULT NULL,
+  `driver_id` int(11) DEFAULT NULL,
+  `plan_id` int(11) DEFAULT NULL,
+  `source` varchar(20) DEFAULT NULL,
+  `destination` varchar(20) DEFAULT NULL,
+ -- `toll_amount` int(11) DEFAULT NULL,
+ -- `parking_charge` int(11) DEFAULT NULL,
+ -- `load_size` int(11) DEFAULT NULL,
+ -- `travel_date` date DEFAULT NULL,
+ -- `travel_time` time DEFAULT NULL,
+ -- `estimated_trip_duration` int(11) DEFAULT NULL,
+ -- `actual_trip_duration` int(11) DEFAULT NULL,
+ -- `time_to_load_unload` int(11) DEFAULT NULL,
+ -- `estimated_cost` int(11) DEFAULT NULL,
+ -- `actual_total_cost` int(11) DEFAULT NULL,
+ -- `actual_distance` int(11) DEFAULT NULL,
+  `reservation_status` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`reservation_id`),
+  KEY `truck_id` (`truck_id`,`driver_id`),
+  KEY `cust_id` (`cust_id`),
+  KEY `plan_id` (`plan_id`),
+  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`truck_id`, `driver_id`) REFERENCES `driver_truck` (`truck_id`, `driver_id`),
+  CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`cust_id`) REFERENCES `customer` (`cust_id`),
+  CONSTRAINT `reservation_ibfk_3` FOREIGN KEY (`plan_id`) REFERENCES `plan_details` (`plan_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+INSERT INTO RESERVATION VALUES (1, 1, 2, 1, 1, 'CHARLOTTE', 'NEW YORK', 'PENDING');
+INSERT INTO RESERVATION VALUES (2, 3, 2, 3, 2, 'NEW YORK', 'CHARLOTTE', 'PENDING');
+INSERT INTO RESERVATION VALUES (3, 7, 2, 5, 1, 'MIAMI', 'DALLAS', 'PENDING');
+INSERT INTO RESERVATION VALUES (4, 9, 2, 7, 2, 'SAN FRANSICO', 'CARY', 'PENDING');
+INSERT INTO RESERVATION VALUES (5, 1, 2, 11, 2, 'RALEIGH', 'GREENS BORO', 'PENDING');
+INSERT INTO RESERVATION VALUES (6, 9, 2, 13, 2, 'BATHESDA', 'TRENTON', 'PENDING');
+INSERT INTO RESERVATION VALUES (7, 3, 2, 15, 1, 'CHICAGO', 'BOSTON', 'PENDING');
+INSERT INTO RESERVATION VALUES (8, 9, 2, 17, 1, 'DALLAS', 'MIAMI', 'PENDING');
+INSERT INTO RESERVATION VALUES (9, 7, 2, 19, 2, 'RALEIGH', 'GREENS BORO', 'PENDING');
+
+
+--
+-- Dumping data for table `reservation`
+--
+
+LOCK TABLES `reservation` WRITE;
+/*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+CREATE TABLE TEMP_TABLE (
+sys_id int(11),
+lgnid VARCHAR(25),
+fname VARCHAR(25),
+lname VARCHAR(25),
+email VARCHAR(25),
+pwd VARCHAR(25),
+strt VARCHAR(25),
+city VARCHAR(25),
+state VARCHAR(25),
+zip VARCHAR(25),
+dob VARCHAR(25),
+sex VARCHAR(25),
+membership VARCHAR(25),
+cardno VARCHAR(25),
+cardcvv VARCHAR(25),
+cardexp VARCHAR(25)
+);
