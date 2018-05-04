@@ -67,7 +67,7 @@ body {
 		 //header("location: customer_profile.php");
 		 echo "<a href = \"customer_card/\">Manage Payment</a>";
 		 echo "<a href = \"reservation/\">View My Reservation</a>";
-		 echo "<a href = \"../logout.php/\">Sign Out</a>";
+		 
 		 
       } 
 	  else {
@@ -79,8 +79,8 @@ body {
 	  
    
 ?>
+<a href = "logout.php">Sign Out</a>
 </div>
-
 <div class="content">
   <h1>Truxxit</h1>
 </div>
