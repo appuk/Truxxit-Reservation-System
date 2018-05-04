@@ -1,7 +1,7 @@
 <?php 
 include 'header.php'; 
 	
-	$sql = "SELECT * FROM user inner join customer on user.sys_id=customer.cust_id where user.login_id='$login_session'";
+	$sql = "SELECT * FROM user inner join driver on user.sys_id=driver.driver_id where user.login_id='$login_session'";
     $result = mysqli_query($db,$sql); // see if user is a customer...
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
@@ -64,35 +64,19 @@ include 'header.php';
         <input type="password" name="verify" 
                value="<?php echo htmlspecialchars($verify);?>">
         <?php echo $fields->getField('verify')->getHTML(); ?><br>
-				
-        <label>Membership Type:</label>
-        <?php 
-			if ($row['membership_type'] == "BRONZE") {
-				echo "<input type=\"radio\" name=\"membership\" value=\"BRONZE\" checked >BRONZE"; 
-				echo "<input type=\"radio\" name=\"membership\" value=\"SILVER\" >SILVER"; 
-				echo "<input type=\"radio\" name=\"membership\" value=\"GOLD\" >GOLD"; 
-				echo "<input type=\"radio\" name=\"membership\" value=\"PLATINUM\" >PLATINUM"; 
-			} 
-			else if ($row['membership_type'] == "SILVER") {
-				echo "<input type=\"radio\" name=\"membership\" value=\"BRONZE\" >BRONZE"; 
-				echo "<input type=\"radio\" name=\"membership\" value=\"SILVER\" checked >SILVER"; 
-				echo "<input type=\"radio\" name=\"membership\" value=\"GOLD\" >GOLD"; 
-				echo "<input type=\"radio\" name=\"membership\" value=\"PLATINUM\" >PLATINUM"; 
-			} 
-			else if ($row['membership_type'] == "GOLD") {
-				echo "<input type=\"radio\" name=\"membership\" value=\"BRONZE\" >BRONZE"; 
-				echo "<input type=\"radio\" name=\"membership\" value=\"SILVER\" >SILVER"; 
-				echo "<input type=\"radio\" name=\"membership\" value=\"GOLD\" checked >GOLD"; 
-				echo "<input type=\"radio\" name=\"membership\" value=\"PLATINUM\" >PLATINUM"; 
-			} else { // membership is PLATINUM
-				echo "<input type=\"radio\" name=\"membership\" value=\"BRONZE\" >BRONZE"; 
-				echo "<input type=\"radio\" name=\"membership\" value=\"SILVER\" >SILVER"; 
-				echo "<input type=\"radio\" name=\"membership\" value=\"GOLD\" >GOLD"; 
-				echo "<input type=\"radio\" name=\"membership\" value=\"PLATINUM\" checked >PLATINUM"; 
-			} 
-		?>		
-		<?php echo $fields->getField('membership')->getHTML(); ?><br>
+		
+		<label>SSN:</label>
+        <input type="text" name="ssn" 
+               value="<?php echo htmlspecialchars($row['ssn']); ?>">
+        <?php echo $fields->getField('ssn')->getHTML(); ?><br>
+		
+		<label>License Number:</label>
+        <input type="text" name="license_no" 
+               value="<?php echo htmlspecialchars($row['license_no']); ?>">
+        <?php echo $fields->getField('license_no')->getHTML(); ?><br>
+			
     </fieldset>
+	
     <fieldset>
         <legend>Contact Information</legend>
 
