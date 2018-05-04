@@ -1,3 +1,5 @@
+use truxxit;
+
 DROP PROCEDURE IF EXISTS delete_reservation;
 
 DELIMITER //

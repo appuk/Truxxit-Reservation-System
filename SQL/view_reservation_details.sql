@@ -1,3 +1,5 @@
+use truxxit;
+
 DROP VIEW RESERVATION_DETAILS;
 
 CREATE VIEW RESERVATION_DETAILS AS
@@ -16,4 +18,4 @@ AND C.TRUCK_ID = D.TRUCK_ID
 AND C.PLAN_ID = E.PLAN_ID
 AND C.DRIVER_ID = F.SYS_ID;
 
-select * from reservation_details where login_id = 'a';   -- 'C1I2S6';
+-- select * from reservation_details where login_id = 'a';   -- 'C1I2S6';
