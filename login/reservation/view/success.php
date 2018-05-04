@@ -21,6 +21,7 @@
 		<th>Driver_Name</th>
 		<th>Truck_Type</th>
 		<th>Plan_Name</th>
+		<th>Operation</th>
 	 </tr>
 	 
 	   <?php
@@ -36,6 +37,7 @@ $reservation_id_ = 0;
 	   
 		if( $res ) { 
   $results = 0; 
+  
 
   do { 
     if ($result = $mysqli->store_result()) { 
@@ -43,18 +45,28 @@ $reservation_id_ = 0;
 	
    		
 	while( $row = $result->fetch_row() ) {
-		
+		echo "<form>";
 		echo "<tr>";
-			
+				
         foreach( $row as $cell1 )
 		{	
 		echo "<td>";
+		//echo $row['Customer_Name'];
 				
 		echo $cell1, "&nbsp;";
 		echo "<br/>";
-	} } echo "</td>";
+		
+		
+	} 
+	echo '<td><a href="view/delete.php?id='. $row['0']. '">Delete</a></td>';
+	} 
+	
+	echo "</td>";
+	//echo "$x";
+	
+	//echo "<td><input type='hidden' name='id' value=$row['0'] /><td>";
 			echo "</tr>";
-			
+			echo $row['0'];
       $result->close(); 
       if( $mysqli->more_results() ) { echo "<br/>";}
 		else break;
@@ -64,6 +76,8 @@ $reservation_id_ = 0;
     } 
   } while( $mysqli->next_result() ); 
 } 	
+
+
 ?>
 
 
